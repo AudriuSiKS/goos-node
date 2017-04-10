@@ -8,8 +8,14 @@ var debug = require('debug')('goos');
 export const SniperStatus = {Joining: 'Joining', Lost: 'Lost'};
 
 export function main(itemId) {
+    const Topic = `auction-${itemId}`;
     const app = express();
     let status = SniperStatus.Joining;
+
+    let publisher = Redis.createClient();
+
+    debug("Sniper: subscribing to auction", Topic);
+    publisher.publish(Topic, "Join");
 
     app.get('/', function (req, res) {
       res.send(`<html><body><span id="sniper-status">${status}</span></body></html>`);
