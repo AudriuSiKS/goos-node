@@ -13,9 +13,16 @@ export function main(itemId) {
     let status = SniperStatus.Joining;
 
     let publisher = Redis.createClient();
+    let subscriber = Redis.createClient();
 
     debug("Sniper: subscribing to auction", Topic);
     publisher.publish(Topic, "Join");
+
+    subscriber.subscribe(Topic);
+    subscriber.on('message', (channel, message) => {
+        debug("Sniper: received a message on channel", channel, message);
+        if(channel === Topic && message in SniperStatus) status = message;
+    })
 
     app.get('/', function (req, res) {
       res.send(`<html><body><span id="sniper-status">${status}</span></body></html>`);
