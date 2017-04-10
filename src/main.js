@@ -1,9 +1,13 @@
 import express from 'express';
+import bluebird from 'bluebird';
+import Redis from 'redis';
+bluebird.promisifyAll(Redis.RedisClient.prototype);
+bluebird.promisifyAll(Redis.Multi.prototype);
 var debug = require('debug')('goos');
 
 export const SniperStatus = {Joining: 'Joining', Lost: 'Lost'};
 
-function main(itemId) {
+export function main(itemId) {
     const app = express();
 
     app.get('/', function (req, res) {
@@ -18,4 +22,7 @@ function main(itemId) {
     });
 }
 
-export default main;
+export default {
+    main,
+    SniperStatus
+}
