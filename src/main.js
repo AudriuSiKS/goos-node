@@ -9,9 +9,10 @@ export const SniperStatus = {Joining: 'Joining', Lost: 'Lost'};
 
 export function main(itemId) {
     const app = express();
+    let status = SniperStatus.Joining;
 
     app.get('/', function (req, res) {
-      res.send(`<html><body></body></html>`);
+      res.send(`<html><body><span id="sniper-status">${status}</span></body></html>`);
     });
 
     var server = app.listen(3000, 'localhost', function () {
