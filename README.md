@@ -1,8 +1,6 @@
 # GOOS: Sniper
 -----
-
 A Node.js implementation of exercises in [Growing Object-Oriented Software, Guided By Tests](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627)
-- [Api docs](https://github.com/wix-private/people/blob/master/people-server/docs/README.md)
 
 ### Adoptation to JavaScript world:
 - UI part is implemented as HTML that is served via HTTP by express 
@@ -13,9 +11,7 @@ A Node.js implementation of exercises in [Growing Object-Oriented Software, Guid
 
 ### Running
 
-1. Install dependencies (Gulp is install globally)
-    npm install
-    npm install -g gulp
+1. Install dependencies: `npm install` and gulb globally `npm install -g gulp`
 
 2. Start a local redis server with default config:
 `redis-server &`
