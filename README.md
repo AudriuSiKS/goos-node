@@ -1,5 +1,4 @@
 # GOOS: Sniper
------
 A Node.js implementation of exercises in [Growing Object-Oriented Software, Guided By Tests](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627)
 
 ### Adoptation to JavaScript world:
