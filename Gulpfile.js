@@ -15,6 +15,7 @@ gulp.task('transpile', ['clean'], function () {
     return gulp.src(['src/**/*.js', 'test/**/*.js'], {nodir: true})
         .pipe(sourcemaps.init())
         .pipe(babel({
+            plugins: ['transform-runtime'],
           presets: ['es2015', 'es2017', 'stage-0']
         }))
         .pipe(sourcemaps.write('.'))
