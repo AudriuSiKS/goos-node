@@ -10,7 +10,10 @@ A Node.js implementation of exercises in [Growing Object-Oriented Software, Guid
 
 ### Running
 
-1. Install dependencies: `npm install` and gulp globally `npm install -g gulp`
+1. Install dependencies: 
+- `npm install` 
+- gulp globally `npm install -g gulp`
+- redis server (using Homebew) `brew install redis`
 
 2. Start a local redis server with default config:
 `redis-server &`
