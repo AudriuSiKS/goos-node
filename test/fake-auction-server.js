@@ -2,7 +2,7 @@ import Redis from 'redis';
 import Promise from 'promise';
 import retry from 'qretry';
 import { SniperStatus } from '../src/main';
-var debug = require('debug')('goos');
+var debug = require('debug')('AUCTION');
 
 export default function FakeAuctionServer(_itemId) {
     this.itemId = _itemId;
@@ -14,18 +14,18 @@ export default function FakeAuctionServer(_itemId) {
 
     let messageCount = 0;
     subscriber.on('message', (channel, message) => {    //Something like SingleMessageListener
-        debug("Auction: received a message on channel", channel, message);
+        debug("received a message on channel", channel, message);
         if (channel === topic) messageCount++;
     });
 
     this.startSellingItem = function() {
         topic = `auction-${this.itemId}`;
-        debug("Auction: start selling", topic);
+        debug("start selling", topic);
         return subscriber.subscribeAsync(topic);
     }
 
     this.announceClosed = function() {    //2
-        debug("Auction: announcing closed", topic);
+        debug("announcing closed", topic);
         return publisher.publishAsync(topic, SniperStatus.Lost);
     }
 

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "DEBUG=goos gulp test",
+    "test": "DEBUG=SNIPER,AUCTION  gulp test",
      "start": "gulp transpile && node dist/src/index.js"
   },
   "author": "",

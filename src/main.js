@@ -3,7 +3,7 @@ import bluebird from 'bluebird';
 import Redis from 'redis';
 bluebird.promisifyAll(Redis.RedisClient.prototype);
 bluebird.promisifyAll(Redis.Multi.prototype);
-var debug = require('debug')('goos');
+var debug = require('debug')('SNIPER');
 
 export const SniperStatus = {Joining: 'Joining', Lost: 'Lost'};
 
@@ -15,12 +15,12 @@ export function main(itemId) {
     let publisher = Redis.createClient();
     let subscriber = Redis.createClient();
 
-    debug("Sniper: subscribing to auction", Topic);
+    debug("subscribing to auction", Topic);
     publisher.publish(Topic, "Join");
 
     subscriber.subscribe(Topic);
     subscriber.on('message', (channel, message) => {
-        debug("Sniper: received a message on channel", channel, message);
+        debug("received a message on channel", channel, message);
         if(channel === Topic && message in SniperStatus) status = message;
     })
 
