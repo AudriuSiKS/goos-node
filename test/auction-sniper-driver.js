@@ -1,7 +1,6 @@
 import retry from 'qretry';
 import {expect} from 'chai';
-
-var webdriverio = require('webdriverio');
+import { remote } from 'webdriverio';
 
 export default function AuctionSniperDriver(timeoutInMillis) {
 
@@ -9,7 +8,7 @@ export default function AuctionSniperDriver(timeoutInMillis) {
     const MAX_RETRY_COUNT = Math.floor((timeoutInMillis / RETRY_INTERVAL));
 
     const options = { desiredCapabilities: { browserName: 'chrome', host: '127.0.0.1' } };
-    let client = webdriverio.remote(options).init();
+    let client = remote(options).init();
 
     this.showsSniperStatus = function (statusText) {
         return retry(() => client.url("http://localhost:3000/").getText('#sniper-status')
